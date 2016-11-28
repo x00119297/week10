@@ -20,8 +20,8 @@ public class Product extends Model {
     @Constraints.Required
     private String name;
 
-    @Constraints.Required
-    private String category;
+    @ManyToOne
+    private Category category;
 
     @Constraints.Required
     private String description;
@@ -49,7 +49,7 @@ public class Product extends Model {
     public static Finder<Long,Product> find = new Finder<Long,Product>(Product.class);
 
     // Find all Products in the database
-    // Filter product name 
+    // Filter product name
     public static List<Product> findAll() {
         return Product.find.all();
     }
@@ -93,7 +93,7 @@ public class Product extends Model {
         this.price = price;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 

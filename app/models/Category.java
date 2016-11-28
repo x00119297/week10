@@ -9,7 +9,7 @@ import play.data.validation.*;
 
 // Product Entity managed by the ORM
 @Entity
-public class Product extends Model {
+public class Category extends Model {
 
     // Properties
     // Annotate id as the primary key
@@ -20,18 +20,6 @@ public class Product extends Model {
     @Constraints.Required
     private String name;
 
-    @Constraints.Required
-    private String category;
-
-    @Constraints.Required
-    private String description;
-
-    @Constraints.Required
-    private int	stock;
-
-    @Constraints.Required
-    private double price;
-
     @OneToMany
     private List<Product> products;
 
@@ -40,9 +28,41 @@ public class Product extends Model {
     }
 
     // Constructor to initialise object
-    public  Category(Integer id, String name, List<Product> products) {
+    public  Category(Long id, String name, List<Product> products) {
+        this.setId(id);
+        this.setName(name);
+        this.setProducts(products);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
         this.products = products;
+    }
+    //Generic query helper for entity Computer with id Long
+    public static Finder<Long,Category> find = new Finder<Long,Category>(Category.class);
+
+    // Find all Products in the database
+    // Filter product name
+    public static List<Category> findAll() {
+        return Category.find.where().orderBy("name asc").findList();
     }
 }
