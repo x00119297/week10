@@ -116,6 +116,6 @@ public class HomeController extends Controller {
         flash("success", "Product has been deleted");
 
         // Redirect to products page
-        return redirect(routes.HomeController.products(0));
+        return redirect(routes.HomeController.products(0    ));
     }
 }

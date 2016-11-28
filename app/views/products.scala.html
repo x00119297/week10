@@ -10,10 +10,10 @@
             <div class="list-group">
                 <a href="@routes.HomeController.products(0) class="list-group-item">All Categories</a>
                 @for(c <- categories){
-                    <li class="list-group-item">@c.getName
+                    <a href="@routes.HomeController.products(c.getId)" class="list-group-item">@c.getName
                         <span class="badge">@c.getProducts.size()</span>
 
-                    </li>
+                    </a>
                 }
 
 
