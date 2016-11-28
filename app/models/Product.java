@@ -97,7 +97,7 @@ public class Product extends Model {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 }
